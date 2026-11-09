@@ -1,47 +1,70 @@
 {
-  "extName": { "message": "ClaudeTheme (unofficial)" },
-  "extDescription": { "message": "Custom color themes for the claude.ai website, with light and dark versions and WCAG contrast checks. Unofficial, not affiliated with Anthropic." },
-  "baseLabel": { "message": "Base color" },
-  "baseHint": { "message": "Tints backgrounds and text" },
-  "accentLabel": { "message": "Accent color" },
-  "accentHint": { "message": "Buttons, links and focus" },
-  "hexLabel": { "message": "Hex" },
-  "lightnessLabel": { "message": "Lightness" },
-  "chromaLabel": { "message": "Chroma" },
-  "hueLabel": { "message": "Hue" },
-  "tintLabel": { "message": "Tint" },
-  "previewTitle": { "message": "Preview" },
-  "modeLight": { "message": "Light" },
-  "modeDark": { "message": "Dark" },
-  "mockQuestion": { "message": "Can you suggest a warm palette?" },
-  "mockAnswer": { "message": "Here is one built around terracotta and sand." },
-  "mockLink": { "message": "See the swatches" },
-  "mockInput": { "message": "Reply…" },
-  "contrastTitle": { "message": "Contrast fixes" },
-  "contrastNone": { "message": "All pairs pass WCAG AA. Nothing adjusted." },
-  "contrastFix": { "message": "$MODE$ · $TOKEN$: $FROM$ → $TO$ ($BEFORE$ → $AFTER$, needs $MIN$)", "placeholders": {
-    "mode": { "content": "$1" }, "token": { "content": "$2" }, "from": { "content": "$3" }, "to": { "content": "$4" },
-    "before": { "content": "$5" }, "after": { "content": "$6" }, "min": { "content": "$7" } } },
-  "contrastUnresolved": { "message": "could not fully reach the target" },
-  "applyButton": { "message": "Apply theme" },
-  "resetButton": { "message": "Restore Claude's original" },
-  "statusPreviewing": { "message": "Previewing on this tab. Close the popup to discard." },
-  "statusApplied": { "message": "Theme applied. It stays after reloads and restarts." },
-  "statusReset": { "message": "Back to Claude's original theme." },
-  "statusActive": { "message": "Active theme: $NAME$", "placeholders": { "name": { "content": "$1" } } },
-  "statusNoTab": { "message": "Open claude.ai in this tab to see a live preview." },
-  "statusReloadTab": { "message": "This claude.ai tab was open before the extension loaded. Reload it once to connect." },
-  "reloadTabButton": { "message": "Reload tab" },
-  "customThemeName": { "message": "Custom" },
-  "tokenText": { "message": "text" },
-  "tokenTextSecondary": { "message": "secondary text" },
-  "tokenTextMuted": { "message": "muted text" },
-  "tokenAccent": { "message": "accent" },
-  "tokenAccentHover": { "message": "accent hover" },
-  "tokenAccentText": { "message": "link text" },
-  "tokenBorderStrong": { "message": "control border" },
-  "tokenDanger": { "message": "error" },
-  "tokenSuccess": { "message": "success" },
-  "tokenWarning": { "message": "warning" },
-  "unofficial": { "message": "Unofficial · not affiliated with Anthropic" }
+  "extName": {
+    "message": "ClaudeTheme (unofficial)"
+  },
+  "extDescription": {
+    "message": "High-contrast color themes for the claude.ai website, checked against WCAG contrast. Unofficial, not affiliated with Anthropic."
+  },
+  "unofficial": {
+    "message": "Unofficial · not affiliated with Anthropic"
+  },
+  "pickIntro": {
+    "message": "Pick a theme to preview it on this tab."
+  },
+  "themesLabel": {
+    "message": "Themes"
+  },
+  "theme_navy_orange": {
+    "message": "Navy & orange"
+  },
+  "theme_red_black": {
+    "message": "Red & black"
+  },
+  "theme_black_orange": {
+    "message": "Black & orange"
+  },
+  "theme_cream_navy": {
+    "message": "Cream & navy"
+  },
+  "originalName": {
+    "message": "Claude's original"
+  },
+  "originalMeta": {
+    "message": "No theme"
+  },
+  "contrastMeta": {
+    "message": "Text contrast $RATIO$:1 · $LEVEL$",
+    "placeholders": {
+      "ratio": {
+        "content": "$1"
+      },
+      "level": {
+        "content": "$2"
+      }
+    }
+  },
+  "activeTag": {
+    "message": "active"
+  },
+  "applyButton": {
+    "message": "Apply"
+  },
+  "statusPreviewing": {
+    "message": "Previewing on this tab. Close the popup to discard."
+  },
+  "statusApplied": {
+    "message": "Theme applied. It stays after reloads and restarts."
+  },
+  "statusReset": {
+    "message": "Back to Claude's original look."
+  },
+  "statusNoTab": {
+    "message": "Open claude.ai in this tab to see a live preview."
+  },
+  "statusReloadTab": {
+    "message": "This claude.ai tab was open before the extension loaded. Reload it once to connect."
+  },
+  "reloadTabButton": {
+    "message": "Reload tab"
+  }
 }
