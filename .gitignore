@@ -21,3 +21,6 @@ desktop.ini
 # Local environment
 .env
 .env.*
+
+# Local tooling
+.claude/

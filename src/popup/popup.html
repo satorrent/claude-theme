@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ClaudeTheme</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <h1>ClaudeTheme</h1>
+    </div>
+    <p class="fine" data-i18n="unofficial"></p>
+  </header>
+
+  <main>
+    <section class="editors">
+      <div class="editor" data-color="base">
+        <div class="editor-head">
+          <span class="swatch" aria-hidden="true"></span>
+          <div class="editor-title">
+            <label data-i18n="baseLabel" for="base-hex"></label>
+            <span class="fine" data-i18n="baseHint"></span>
+          </div>
+          <input id="base-hex" class="hex" type="text" spellcheck="false" maxlength="7" autocomplete="off">
+        </div>
+        <div class="sliders"></div>
+      </div>
+
+      <div class="editor" data-color="accent">
+        <div class="editor-head">
+          <span class="swatch" aria-hidden="true"></span>
+          <div class="editor-title">
+            <label data-i18n="accentLabel" for="accent-hex"></label>
+            <span class="fine" data-i18n="accentHint"></span>
+          </div>
+          <input id="accent-hex" class="hex" type="text" spellcheck="false" maxlength="7" autocomplete="off">
+        </div>
+        <div class="sliders"></div>
+      </div>
+    </section>
+
+    <section class="preview">
+      <div class="section-head">
+        <h2 data-i18n="previewTitle"></h2>
+        <div class="segmented" role="radiogroup">
+          <button type="button" role="radio" data-mode="light" data-i18n="modeLight"></button>
+          <button type="button" role="radio" data-mode="dark" data-i18n="modeDark"></button>
+        </div>
+      </div>
+      <div class="mock" aria-hidden="true">
+        <div class="mock-side">
+          <span class="mock-pill strong"></span>
+          <span class="mock-pill"></span>
+          <span class="mock-pill"></span>
+          <span class="mock-pill short"></span>
+        </div>
+        <div class="mock-main">
+          <div class="mock-user" data-i18n="mockQuestion"></div>
+          <p class="mock-answer"><span data-i18n="mockAnswer"></span> <a data-i18n="mockLink"></a></p>
+          <div class="mock-input">
+            <span data-i18n="mockInput"></span>
+            <span class="mock-send">↑</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <details class="contrast">
+      <summary><span data-i18n="contrastTitle"></span> <span class="count"></span></summary>
+      <ul class="fixes"></ul>
+    </details>
+  </main>
+
+  <footer class="actions">
+    <button type="button" id="apply" class="primary" data-i18n="applyButton"></button>
+    <button type="button" id="reset" class="ghost" data-i18n="resetButton"></button>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
