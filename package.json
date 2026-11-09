@@ -5,6 +5,12 @@
   "private": true,
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satorrent/claude-theme.git"
+  },
+  "homepage": "https://github.com/satorrent/claude-theme#readme",
+  "bugs": "https://github.com/satorrent/claude-theme/issues",
   "scripts": {
     "build": "node scripts/build.mjs",
     "watch": "node scripts/build.mjs --watch",

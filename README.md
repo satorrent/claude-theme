@@ -30,7 +30,7 @@ You need [Node.js](https://nodejs.org) 20.10 or newer and Google Chrome 120 or n
 1. Get the code and build it:
 
    ```bash
-   git clone <this repository's URL>
+   git clone https://github.com/satorrent/claude-theme.git
    cd claude-theme
    npm install
    npm run build

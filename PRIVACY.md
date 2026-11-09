@@ -12,7 +12,7 @@ Contrast Themes does not collect, transmit, sell or share any data.
 - **Permissions:** `storage` to remember your theme, and access to `https://claude.ai/*` to apply it there. It runs on no other site.
 - **Removing your data:** uninstalling the extension deletes everything it stored.
 
-Questions: open an issue in this project's GitHub repository.
+Questions: [open an issue](https://github.com/satorrent/claude-theme/issues).
 
 ---
 
@@ -26,4 +26,4 @@ Contrast Themes no recoge, transmite, vende ni comparte ningún dato.
 - **Permisos:** `storage` para recordar tu tema y acceso a `https://claude.ai/*` para aplicarlo allí. No funciona en ninguna otra web.
 - **Borrar tus datos:** al desinstalar la extensión se borra todo lo que guardó.
 
-Dudas: abre una incidencia (issue) en el repositorio de GitHub del proyecto.
+Dudas: [abre una incidencia](https://github.com/satorrent/claude-theme/issues).
