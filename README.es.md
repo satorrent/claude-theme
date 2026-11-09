@@ -2,11 +2,24 @@
 
 [English](README.md) · **Español**
 
-Temas de color personalizados para la web de [claude.ai](https://claude.ai), más allá de claro y oscuro. Eliges un color base y uno de acento, y ClaudeTheme genera un tema completo en versión clara **y** oscura, comprueba el contraste de cada texto y control según WCAG AA, y corrige lo que no llega.
+Cuatro temas de color llamativos para la web de [claude.ai](https://claude.ai), con bordes visibles y texto legible. Cada tema se comprueba con las reglas de contraste de WCAG al construir la extensión, así que ninguno sacrifica la lectura por el aspecto.
 
 > **Proyecto no oficial.** ClaudeTheme no está hecho, respaldado ni mantenido por Anthropic. «Claude» es una marca de Anthropic y aquí solo se usa para indicar en qué web funciona la extensión.
 
-> **Estado: 0.1.0, en desarrollo.** Esta versión incluye colores elegidos a mano con vista previa en vivo. Las paletas predefinidas, los temas desde imagen, los temas guardados y la importación/exportación llegarán a continuación.
+> **Estado: 0.1.0, en desarrollo.**
+
+## Temas
+
+| Tema | Fondo | Bordes | Contraste del texto |
+| --- | --- | --- | --- |
+| Azul marino y naranja | `#0b1f3a` | `#ff8a1f` | 10,63:1 (AAA) |
+| Rojo y negro | `#c92324` | `#000000` | 5,15:1 (AA) |
+| Negro y naranja | `#0a0a0a` | `#ff7a00` | 15,52:1 (AAA) |
+| Crema y azul marino | `#fbf6ea` | `#14284f` | 14,56:1 (AAA) |
+
+El contraste del texto es el del texto normal sobre el fondo de la página ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA es 4,5:1 y AAA es 7:1). Los bordes y controles llegan al menos a 3:1. Rojo y negro solo llega a AA: un rojo lo bastante vivo para seguir pareciendo rojo no puede dar 7:1 con texto blanco y a la vez mantener visibles los bordes negros.
+
+Cada tema se ve igual con Claude en modo claro o en modo oscuro: el color es el tema.
 
 ## Construir y cargar (modo desarrollador)
 
@@ -36,11 +49,13 @@ Los content scripts de Manifest V3 no admiten módulos ES, y el motor de temas e
 
 ## Uso
 
-- El **color base** tiñe fondos y texto. El **color de acento** se usa en botones, enlaces y anillos de foco.
-- Mientras el popup está abierto, la pestaña de claude.ai muestra una vista previa en vivo. Cierra el popup para descartarla o pulsa **Aplicar tema** para quedártela.
-- El tema sigue el modo claro/oscuro/sistema que tengas elegido en los ajustes de Claude.
-- **Volver al tema original de Claude** quita el tema.
-- **Correcciones de contraste** muestra cada color que se ha ajustado para cumplir WCAG AA (4,5:1 para texto, 3:1 para controles), con el valor antes y después.
+- Pulsa un tema en el popup para verlo en la pestaña de claude.ai abierta. Cierra el popup para descartar la vista previa o pulsa **Aplicar** para quedártelo.
+- Elige **Original de Claude** y pulsa **Aplicar** para quitar el tema.
+- Si el popup dice que hay que recargar la pestaña (pestañas abiertas antes de instalar o actualizar la extensión), usa el botón **Recargar pestaña**.
+
+## Añadir un tema
+
+Añade un archivo JSON en `themes/` con el nombre de su `id` (por ejemplo `themes/forest-gold.json`), siguiendo `themes/theme.schema.json`. Puedes copiar un tema existente como punto de partida. `npm run build` lo valida y no construye si algún par de texto, acento o borde queda por debajo de WCAG AA; `npm test` hace las mismas comprobaciones. Después añade el nombre traducido como `theme_<id con guiones bajos>` en `_locales/*/messages.json`.
 
 ## Desarrollo
 

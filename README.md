@@ -2,11 +2,24 @@
 
 **English** · [Español](README.es.md)
 
-Custom color themes for the [claude.ai](https://claude.ai) website, beyond light and dark. Pick a base and an accent color and ClaudeTheme generates a complete light **and** dark theme, checks every text and control against WCAG AA contrast, and fixes what does not pass.
+Four bold color themes for the [claude.ai](https://claude.ai) website, with visible borders and readable text. Every theme is checked against WCAG contrast rules at build time, so none of them trades legibility for looks.
 
 > **Unofficial project.** ClaudeTheme is not made, endorsed or supported by Anthropic. "Claude" is a trademark of Anthropic; it is used here only to describe the website this extension works on.
 
-> **Status: 0.1.0, early development.** This version covers manual colors with live preview. Preset palettes, image-based themes, saved themes and import/export are coming next.
+> **Status: 0.1.0, early development.**
+
+## Themes
+
+| Theme | Background | Borders | Text contrast |
+| --- | --- | --- | --- |
+| Navy & orange | `#0b1f3a` | `#ff8a1f` | 10.63:1 (AAA) |
+| Red & black | `#c92324` | `#000000` | 5.15:1 (AA) |
+| Black & orange | `#0a0a0a` | `#ff7a00` | 15.52:1 (AAA) |
+| Cream & navy | `#fbf6ea` | `#14284f` | 14.56:1 (AAA) |
+
+Text contrast is body text on the page background ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA is 4.5:1, AAA is 7:1). Borders and controls reach at least 3:1. Red & black only reaches AA: a red bright enough to still look red cannot also give 7:1 with white text while keeping black borders visible.
+
+Each theme looks the same whether Claude is in light or dark mode: the color is the theme.
 
 ## Build and load (developer mode)
 
@@ -36,11 +49,13 @@ Manifest V3 content scripts cannot be ES modules, while the theme engine is writ
 
 ## Usage
 
-- **Base color** tints backgrounds and text. **Accent color** drives buttons, links and focus rings.
-- While the popup is open, the claude.ai tab shows a live preview. Close the popup to discard it, or click **Apply theme** to keep it.
-- The theme follows the light/dark/system mode you chose in Claude's settings.
-- **Restore Claude's original** removes the theme.
-- **Contrast fixes** lists every color that was adjusted to reach WCAG AA (4.5:1 for text, 3:1 for controls), with the before and after values.
+- Click a theme in the popup to preview it on the open claude.ai tab. Close the popup to discard the preview, or click **Apply** to keep it.
+- Choose **Claude's original** and click **Apply** to remove the theme.
+- If the popup says the tab needs a reload (tabs opened before the extension was installed or updated), use the **Reload tab** button.
+
+## Adding a theme
+
+Add one JSON file to `themes/`, named after its `id` (for example `themes/forest-gold.json`), following `themes/theme.schema.json`. Copy an existing theme as a starting point. `npm run build` validates it and refuses to build if any text, accent or border pair falls below WCAG AA; `npm test` runs the same checks. Then add a translated name as `theme_<id with underscores>` in `_locales/*/messages.json`.
 
 ## Development
 
