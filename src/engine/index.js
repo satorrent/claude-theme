@@ -7,3 +7,4 @@ export * from './tokens.js';
 export * from './schema.js';
 export * from './theme.js';
 export * from './extract.js';
+export * from './audit.js';

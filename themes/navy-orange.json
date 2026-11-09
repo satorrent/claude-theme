@@ -1,0 +1,54 @@
+{
+  "$schema": "./theme.schema.json",
+  "schemaVersion": 1,
+  "id": "navy-orange",
+  "name": "Navy & Orange",
+  "description": "Deep navy backgrounds with bright orange borders and accents.",
+  "source": "preset",
+  "inputs": {
+    "base": "#0b1f3a",
+    "accent": "#ff8a1f"
+  },
+  "tokens": {
+    "light": {
+      "bg": "#0b1f3a",
+      "surfaceLow": "#081629",
+      "surface": "#0f2a4d",
+      "surfaceRaised": "#13325b",
+      "popover": "#173a68",
+      "text": "#f5f7fb",
+      "textSecondary": "#cdd7e8",
+      "textMuted": "#a9b8d1",
+      "accent": "#ff8a1f",
+      "accentHover": "#ffa24d",
+      "onAccent": "#1a0d00",
+      "accentText": "#ffa24d",
+      "accentSoft": "#2b2a33",
+      "border": "#ff8a1f",
+      "borderStrong": "#ff8a1f",
+      "danger": "#ff9b9b",
+      "success": "#7ee2a0",
+      "warning": "#ffd166"
+    },
+    "dark": {
+      "bg": "#0b1f3a",
+      "surfaceLow": "#081629",
+      "surface": "#0f2a4d",
+      "surfaceRaised": "#13325b",
+      "popover": "#173a68",
+      "text": "#f5f7fb",
+      "textSecondary": "#cdd7e8",
+      "textMuted": "#a9b8d1",
+      "accent": "#ff8a1f",
+      "accentHover": "#ffa24d",
+      "onAccent": "#1a0d00",
+      "accentText": "#ffa24d",
+      "accentSoft": "#2b2a33",
+      "border": "#ff8a1f",
+      "borderStrong": "#ff8a1f",
+      "danger": "#ff9b9b",
+      "success": "#7ee2a0",
+      "warning": "#ffd166"
+    }
+  }
+}

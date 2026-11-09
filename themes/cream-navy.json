@@ -1,0 +1,54 @@
+{
+  "$schema": "./theme.schema.json",
+  "schemaVersion": 1,
+  "id": "cream-navy",
+  "name": "Cream & Navy",
+  "description": "Warm cream backgrounds with navy borders, for daytime reading.",
+  "source": "preset",
+  "inputs": {
+    "base": "#fbf6ea",
+    "accent": "#14284f"
+  },
+  "tokens": {
+    "light": {
+      "bg": "#fbf6ea",
+      "surfaceLow": "#f3ecdb",
+      "surface": "#fffdf7",
+      "surfaceRaised": "#ffffff",
+      "popover": "#ffffff",
+      "text": "#0f1b33",
+      "textSecondary": "#2c3a57",
+      "textMuted": "#47557a",
+      "accent": "#14284f",
+      "accentHover": "#1f3a6e",
+      "onAccent": "#ffffff",
+      "accentText": "#1b3f8f",
+      "accentSoft": "#e3e8f4",
+      "border": "#14284f",
+      "borderStrong": "#14284f",
+      "danger": "#a8201a",
+      "success": "#1d6b35",
+      "warning": "#7a4b00"
+    },
+    "dark": {
+      "bg": "#fbf6ea",
+      "surfaceLow": "#f3ecdb",
+      "surface": "#fffdf7",
+      "surfaceRaised": "#ffffff",
+      "popover": "#ffffff",
+      "text": "#0f1b33",
+      "textSecondary": "#2c3a57",
+      "textMuted": "#47557a",
+      "accent": "#14284f",
+      "accentHover": "#1f3a6e",
+      "onAccent": "#ffffff",
+      "accentText": "#1b3f8f",
+      "accentSoft": "#e3e8f4",
+      "border": "#14284f",
+      "borderStrong": "#14284f",
+      "danger": "#a8201a",
+      "success": "#1d6b35",
+      "warning": "#7a4b00"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 // Theme objects: create, complete and validate. Pure, no browser APIs.
 
+import { auditTokens } from './audit.js';
 import { normalizeHex } from './color.js';
 import { SCHEMA_VERSION, validateTheme } from './schema.js';
 import { generateTokens } from './tokens.js';
@@ -47,9 +48,9 @@ export function createTheme(spec) {
 }
 
 /**
- * Validates a theme and fills in tokens when they are missing.
- * Throws an Error listing every schema violation.
- * @returns {{theme: object, corrections: Array}}
+ * Validates a theme, fills in tokens when they are missing and audits the
+ * contrast of hand-written tokens. Throws an Error listing every problem.
+ * @returns {{theme: object, corrections: Array, audit: {light: object, dark: object}}}
  */
 export function completeTheme(raw) {
   const check = validateTheme(raw);
@@ -57,8 +58,20 @@ export function completeTheme(raw) {
     const list = check.errors.map((e) => `${e.path} ${e.message}`).join('; ');
     throw new Error(`Invalid theme: ${list}`);
   }
-  if (raw.tokens) return { theme: raw, corrections: [] };
   const { $schema, ...rest } = raw;
-  const { light, dark, corrections } = generateTokens(rest.inputs);
-  return { theme: { ...rest, tokens: { light, dark } }, corrections };
+  let theme = rest;
+  let corrections = [];
+  if (!rest.tokens) {
+    const generated = generateTokens(rest.inputs);
+    corrections = generated.corrections;
+    theme = { ...rest, tokens: { light: generated.light, dark: generated.dark } };
+  }
+  const audit = { light: auditTokens(theme.tokens.light), dark: auditTokens(theme.tokens.dark) };
+  const failures = ['light', 'dark'].flatMap((mode) =>
+    audit[mode].results
+      .filter((r) => !r.pass)
+      .map((r) => `${mode} ${r.fg} on ${r.bg} is ${r.ratio.toFixed(2)}:1 (needs ${r.min}:1)`)
+  );
+  if (failures.length) throw new Error(`Contrast too low: ${failures.join('; ')}`);
+  return { theme, corrections, audit };
 }

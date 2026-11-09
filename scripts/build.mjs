@@ -63,7 +63,7 @@ async function buildThemes() {
     try {
       const raw = JSON.parse(await readFile(join(srcDir, file), 'utf8'));
       if (`${raw.id}.json` !== file) throw new Error(`id "${raw.id}" must match the file name`);
-      const { theme, corrections } = completeTheme(raw);
+      const { theme, corrections, audit } = completeTheme(raw);
       await writeFile(join(outDir, file), JSON.stringify(theme));
       index.push({
         id: theme.id,
@@ -71,7 +71,10 @@ async function buildThemes() {
         ...(theme.author ? { author: theme.author } : {}),
         ...(theme.description ? { description: theme.description } : {}),
         file,
-        swatch: [theme.tokens.light.bg, theme.tokens.light.accent, theme.tokens.dark.bg, theme.tokens.dark.accent],
+        contrast: {
+          light: { text: Number(audit.light.textRatio.toFixed(2)), level: audit.light.level },
+          dark: { text: Number(audit.dark.textRatio.toFixed(2)), level: audit.dark.level },
+        },
       });
       if (corrections.length) {
         console.log(`  ${file}: ${corrections.length} contrast correction(s) applied automatically`);
