@@ -13,9 +13,25 @@ test('every mapped variable points to a real token', () => {
   assert.equal(new Set(names).size, names.length, 'no duplicated variables');
 });
 
+test('text colors that claude.ai redeclares are all themed', () => {
+  // Left unmapped, these stay translucent white and vanish on light themes.
+  const names = ROOT_VARIABLES.map((v) => v.name);
+  for (const name of [
+    '--cds-text-primary',
+    '--cds-text-secondary',
+    '--cds-text-muted',
+    '--muted-as-secondary',
+    '--cds-fizzy-lake-color-secondary',
+    '--cds-fizzy-lake-color-tertiary',
+    '--cds-fizzy-lake-color-solid-muted',
+  ]) {
+    assert.ok(names.includes(name), `${name} is mapped`);
+  }
+});
+
 test('css covers explicit modes and system mode via media queries', () => {
   const css = buildCss(tokens, { name: 'Test' });
-  assert.match(css, /html\[data-mode="light"\],\nhtml\[data-mode="light"\] \.cds-root,\nhtml\[data-mode="light"\] #static-composer-box \{/);
+  assert.match(css, /html\[data-mode="light"\],\nhtml\[data-mode="light"\] \.cds-root,\nhtml\[data-mode="light"\] #static-composer,\nhtml\[data-mode="light"\] #static-composer-box \{/);
   assert.match(css, /html\[data-mode="dark"\] \.dframe-sidebar \{/);
   assert.match(css, /@media \(prefers-color-scheme: dark\) \{\nhtml\[data-mode="system"\]/);
   assert.match(css, /html:not\(\[data-mode\]\)/);

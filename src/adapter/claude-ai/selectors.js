@@ -15,7 +15,7 @@ export const MODE_ATTRIBUTE = 'data-mode';
  * Elements where claude.ai (re)declares its tokens. Overrides must target
  * all of them, otherwise a nested declaration would win again.
  */
-export const TOKEN_HOSTS = ['', ' .cds-root', ' #static-composer-box'];
+export const TOKEN_HOSTS = ['', ' .cds-root', ' #static-composer', ' #static-composer-box'];
 
 /**
  * Prefix for the theme's own custom properties (--ct-bg, --ct-border, ...),
@@ -64,6 +64,24 @@ export const ROOT_VARIABLES = [
   { name: '--cds-fizzy-lake-color-composer-ring', token: 'borderStrong' },
   { name: '--cds-fizzy-lake-color-seam', token: 'borderStrong' },
   { name: '--cds-fizzy-lake-color-banner-line', token: 'borderStrong' },
+
+  // Text and surface colors of the newer "fizzy lake" color mode. Unmapped,
+  // they stay translucent white, which almost disappears on light themes
+  // (reply action icons, the note under the message box, model menu).
+  { name: '--cds-fizzy-lake-color-solid-primary', token: 'text' },
+  { name: '--cds-fizzy-lake-color-control-ink', token: 'text' },
+  { name: '--cds-fizzy-lake-color-secondary', token: 'textSecondary' },
+  { name: '--cds-fizzy-lake-color-plain-secondary', token: 'textSecondary' },
+  { name: '--cds-fizzy-lake-color-solid-secondary', token: 'textSecondary' },
+  { name: '--cds-fizzy-lake-color-tertiary', token: 'textMuted' },
+  { name: '--cds-fizzy-lake-color-plain-muted', token: 'textMuted' },
+  { name: '--cds-fizzy-lake-color-solid-muted', token: 'textMuted' },
+  { name: '--cds-fizzy-lake-color-placeholder', token: 'textMuted' },
+  { name: '--cds-fizzy-lake-color-icon-only-disabled', token: 'textMuted' },
+  { name: '--cds-fizzy-lake-color-sidebar', token: 'surfaceLow' },
+  { name: '--cds-fizzy-lake-color-card-hover', token: 'surfaceRaised' },
+  { name: '--cds-fizzy-lake-color-selected-hover', token: 'accentSoft' },
+  { name: '--muted-as-secondary', token: 'textMuted' },
 
   // Unprefixed aliases still used by some components.
   { name: '--page-bg', token: 'bg' },
