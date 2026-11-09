@@ -1,0 +1,54 @@
+{
+  "$schema": "./theme.schema.json",
+  "schemaVersion": 1,
+  "id": "cream-terracotta",
+  "name": "Cream & Terracotta",
+  "description": "Warm cream backgrounds with terracotta orange borders.",
+  "source": "preset",
+  "inputs": {
+    "base": "#fbf6ea",
+    "accent": "#ce6d4e"
+  },
+  "tokens": {
+    "light": {
+      "bg": "#fbf6ea",
+      "surfaceLow": "#f3ecdb",
+      "surface": "#fffdf7",
+      "surfaceRaised": "#ffffff",
+      "popover": "#ffffff",
+      "text": "#2b1a12",
+      "textSecondary": "#4e3529",
+      "textMuted": "#6d5244",
+      "accent": "#ce6d4e",
+      "accentHover": "#e08566",
+      "onAccent": "#000000",
+      "accentText": "#ab4e2f",
+      "accentSoft": "#fbe6dc",
+      "border": "#ce6d4e",
+      "borderStrong": "#ce6d4e",
+      "danger": "#a8201a",
+      "success": "#1d6b35",
+      "warning": "#7a4b00"
+    },
+    "dark": {
+      "bg": "#fbf6ea",
+      "surfaceLow": "#f3ecdb",
+      "surface": "#fffdf7",
+      "surfaceRaised": "#ffffff",
+      "popover": "#ffffff",
+      "text": "#2b1a12",
+      "textSecondary": "#4e3529",
+      "textMuted": "#6d5244",
+      "accent": "#ce6d4e",
+      "accentHover": "#e08566",
+      "onAccent": "#000000",
+      "accentText": "#ab4e2f",
+      "accentSoft": "#fbe6dc",
+      "border": "#ce6d4e",
+      "borderStrong": "#ce6d4e",
+      "danger": "#a8201a",
+      "success": "#1d6b35",
+      "warning": "#7a4b00"
+    }
+  }
+}

@@ -32,7 +32,7 @@ test('audit reports failing pairs and the text level', () => {
 });
 
 test('there are exactly the five preset themes', () => {
-  assert.deepEqual(presetFiles.sort(), ['black-orange.json', 'cream-green.json', 'cream-navy.json', 'cream-pink.json', 'navy-orange.json']);
+  assert.deepEqual(presetFiles.sort(), ['black-orange.json', 'cream-green.json', 'cream-navy.json', 'cream-terracotta.json', 'navy-orange.json']);
 });
 
 for (const file of presetFiles) {

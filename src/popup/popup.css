@@ -57,7 +57,7 @@ button { font: inherit; color: inherit; }
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: conic-gradient(from 200deg, #ff8a1f, #ff1493, #0b1f3a, #0a0a0a, #1b9e00, #ff8a1f);
+  background: conic-gradient(from 200deg, #ff8a1f, #ce6d4e, #0b1f3a, #0a0a0a, #1b9e00, #ff8a1f);
 }
 
 main { padding: 0 16px; }
