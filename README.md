@@ -16,7 +16,7 @@ Six bold color themes for the [claude.ai](https://claude.ai) website, with visib
 | Cream & terracotta | `#fbf6ea` | `#ce6d4e` | 14.16:1 (AAA) |
 | Cream & navy | `#fbf6ea` | `#14284f` | 14.56:1 (AAA) |
 | Navy & orange | `#0b1f3a` | `#ff8a1f` | 10.63:1 (AAA) |
-| Black & green | `#0a0a0a` | `#39ff14` | 15.52:1 (AAA) |
+| Black & green | `#0a0a0a` | `#1b9e00` | 15.52:1 (AAA) |
 | Black & orange | `#0a0a0a` | `#ff7a00` | 15.52:1 (AAA) |
 
 Text contrast is body text on the page background ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA is 4.5:1, AAA is 7:1). Borders and controls reach at least 3:1. That is why the green is a vivid green rather than a neon one: a true neon green on cream contrasts only about 1.3:1 and the borders would almost disappear.

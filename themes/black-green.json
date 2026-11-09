@@ -3,11 +3,11 @@
   "schemaVersion": 1,
   "id": "black-green",
   "name": "Black & Green",
-  "description": "Deep black backgrounds with fluorescent green borders.",
+  "description": "Deep black backgrounds with vivid green borders.",
   "source": "preset",
   "inputs": {
     "base": "#0a0a0a",
-    "accent": "#39ff14"
+    "accent": "#1b9e00"
   },
   "tokens": {
     "light": {
@@ -19,13 +19,13 @@
       "text": "#ffffff",
       "textSecondary": "#d6d6d6",
       "textMuted": "#b3b3b3",
-      "accent": "#39ff14",
-      "accentHover": "#6bff4f",
+      "accent": "#1b9e00",
+      "accentHover": "#2fb512",
       "onAccent": "#000000",
-      "accentText": "#6bff4f",
+      "accentText": "#1fa107",
       "accentSoft": "#0f2a0a",
-      "border": "#39ff14",
-      "borderStrong": "#39ff14",
+      "border": "#1b9e00",
+      "borderStrong": "#1b9e00",
       "danger": "#ff8f8f",
       "success": "#7ee2a0",
       "warning": "#ffd166"
@@ -39,13 +39,13 @@
       "text": "#ffffff",
       "textSecondary": "#d6d6d6",
       "textMuted": "#b3b3b3",
-      "accent": "#39ff14",
-      "accentHover": "#6bff4f",
+      "accent": "#1b9e00",
+      "accentHover": "#2fb512",
       "onAccent": "#000000",
-      "accentText": "#6bff4f",
+      "accentText": "#1fa107",
       "accentSoft": "#0f2a0a",
-      "border": "#39ff14",
-      "borderStrong": "#39ff14",
+      "border": "#1b9e00",
+      "borderStrong": "#1b9e00",
       "danger": "#ff8f8f",
       "success": "#7ee2a0",
       "warning": "#ffd166"
