@@ -1,10 +1,10 @@
-# ClaudeTheme
+# Contrast Themes for claude.ai
 
 [English](README.md) · **Español**
 
 Seis temas de color llamativos para la web de [claude.ai](https://claude.ai), con bordes visibles y texto legible. Cada tema se comprueba con las reglas de contraste de WCAG al construir la extensión, así que ninguno sacrifica la lectura por el aspecto.
 
-> **Proyecto no oficial.** ClaudeTheme no está hecho, respaldado ni mantenido por Anthropic. «Claude» es una marca de Anthropic y aquí solo se usa para indicar en qué web funciona la extensión.
+> **Proyecto no oficial.** Contrast Themes no está hecho, respaldado ni mantenido por Anthropic. «Claude» es una marca de Anthropic y aquí solo se usa para indicar en qué web funciona la extensión.
 
 > **Estado: 0.1.0, en desarrollo.**
 
@@ -41,7 +41,7 @@ Necesitas [Node.js](https://nodejs.org) 20.10 o posterior y Google Chrome 120 o 
 2. Abre `chrome://extensions` en Chrome.
 3. Activa el **Modo de desarrollador** (arriba a la derecha).
 4. Pulsa **Cargar descomprimida** y selecciona la carpeta `dist/`.
-5. Abre o recarga una pestaña de claude.ai y pulsa el icono de ClaudeTheme en la barra (fíjalo desde el menú de la pieza de puzle).
+5. Abre o recarga una pestaña de claude.ai y pulsa el icono de Contrast Themes en la barra (fíjalo desde el menú de la pieza de puzle).
 
 Después de cambiar el código, vuelve a ejecutar `npm run build` y pulsa el icono de recarga en la tarjeta de la extensión en `chrome://extensions`. `npm run watch` reconstruye automáticamente con cada cambio.
 
@@ -65,7 +65,11 @@ Añade un archivo JSON en `themes/` con el nombre de su `id` (por ejemplo `theme
 npm test        # tests del motor y del adaptador (node:test, sin dependencias extra)
 npm run build   # construye dist/
 npm run watch   # reconstruye al cambiar archivos
+npm run package # tests + build + contrast-themes-<versión>.zip para la Chrome Web Store
+npm run icons   # vuelve a dibujar los iconos de icons/
 ```
+
+Consulta [CONTRIBUTING.md](CONTRIBUTING.md) (en inglés) para proponer un tema, arreglar cosas cuando claude.ai cambie o publicar una versión.
 
 Estructura:
 
@@ -75,20 +79,25 @@ src/adapter/claude-ai/ Todo lo específico de claude.ai (selectors.js es el úni
 src/popup/             Interfaz del popup
 src/shared/            Claves de almacenamiento compartidas por popup y content script
 themes/                Temas predefinidos (un JSON cada uno) y theme.schema.json
+icons/                 Iconos de la extensión (dibujados por scripts/icons.mjs)
 tests/                 Tests
-scripts/build.mjs      Script de build
+scripts/               Scripts de build, empaquetado e iconos
 ```
 
 ## Limitaciones
 
 - Solo funciona en la **web** de claude.ai en Chrome (y navegadores basados en Chromium). No puede cambiar el aspecto de las apps de escritorio o móvil de Claude.
-- Depende de variables CSS internas de claude.ai. Si claude.ai las cambia, partes del tema pueden dejar de aplicarse hasta que se actualice `src/adapter/claude-ai/selectors.js`. La extensión nunca rompe la página: muestra un aviso `[ClaudeTheme]` en la consola y sigue aplicando lo que funciona.
+- Depende de variables CSS internas de claude.ai. Si claude.ai las cambia, partes del tema pueden dejar de aplicarse hasta que se actualice `src/adapter/claude-ai/selectors.js`. La extensión nunca rompe la página: muestra un aviso `[Contrast Themes]` en la consola y sigue aplicando lo que funciona.
 - Los artefactos, las imágenes y los colores de sintaxis del código mantienen sus propios colores.
 
 ## Desinstalar
 
-Quítala desde `chrome://extensions`. Chrome borra todos sus datos guardados; ClaudeTheme no escribe nada en el almacenamiento propio de claude.ai, así que no queda ningún resto.
+Quítala desde `chrome://extensions`. Chrome borra todos sus datos guardados; Contrast Themes no escribe nada en el almacenamiento propio de claude.ai, así que no queda ningún resto.
+
+## Privacidad
+
+Contrast Themes no recoge nada ni hace peticiones de red. Solo guarda el tema que eliges en tu ordenador. Consulta [PRIVACY.md](PRIVACY.md#política-de-privacidad).
 
 ## Licencia
 
-[MIT](LICENSE)
+[MIT](LICENSE). Los cambios están en [CHANGELOG.md](CHANGELOG.md).

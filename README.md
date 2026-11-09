@@ -1,10 +1,10 @@
-# ClaudeTheme
+# Contrast Themes for claude.ai
 
 **English** · [Español](README.es.md)
 
 Six bold color themes for the [claude.ai](https://claude.ai) website, with visible borders and readable text. Every theme is checked against WCAG contrast rules at build time, so none of them trades legibility for looks.
 
-> **Unofficial project.** ClaudeTheme is not made, endorsed or supported by Anthropic. "Claude" is a trademark of Anthropic; it is used here only to describe the website this extension works on.
+> **Unofficial project.** Contrast Themes is not made, endorsed or supported by Anthropic. "Claude" is a trademark of Anthropic; it is used here only to describe the website this extension works on.
 
 > **Status: 0.1.0, early development.**
 
@@ -41,7 +41,7 @@ You need [Node.js](https://nodejs.org) 20.10 or newer and Google Chrome 120 or n
 2. Open `chrome://extensions` in Chrome.
 3. Turn on **Developer mode** (top right).
 4. Click **Load unpacked** and select the `dist/` folder.
-5. Open or reload a claude.ai tab, then click the ClaudeTheme icon in the toolbar (pin it from the puzzle-piece menu).
+5. Open or reload a claude.ai tab, then click the Contrast Themes icon in the toolbar (pin it from the puzzle-piece menu).
 
 After changing the code, run `npm run build` again and click the reload icon on the extension's card in `chrome://extensions`. `npm run watch` rebuilds automatically on every change.
 
@@ -65,7 +65,11 @@ Add one JSON file to `themes/`, named after its `id` (for example `themes/forest
 npm test        # engine and adapter tests (node:test, no extra dependencies)
 npm run build   # build dist/
 npm run watch   # rebuild on change
+npm run package # tests + build + contrast-themes-<version>.zip for the Chrome Web Store
+npm run icons   # redraw the icons in icons/
 ```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) to propose a theme, fix things when claude.ai changes, or publish a release.
 
 Project layout:
 
@@ -75,20 +79,25 @@ src/adapter/claude-ai/ Everything specific to claude.ai (selectors.js is the onl
 src/popup/             Popup UI
 src/shared/            Storage keys shared by popup and content script
 themes/                Preset themes (one JSON file each) and theme.schema.json
+icons/                 Extension icons (drawn by scripts/icons.mjs)
 tests/                 Tests
-scripts/build.mjs      Build script
+scripts/               Build, package and icon scripts
 ```
 
 ## Limitations
 
 - Works only on the claude.ai **website** in Chrome (and Chromium-based browsers). It cannot theme the Claude desktop or mobile apps.
-- It relies on claude.ai's internal CSS variables. When claude.ai changes them, parts of the theme may stop applying until `src/adapter/claude-ai/selectors.js` is updated. The extension never breaks the page: it logs a `[ClaudeTheme]` warning in the console and keeps applying what still works.
+- It relies on claude.ai's internal CSS variables. When claude.ai changes them, parts of the theme may stop applying until `src/adapter/claude-ai/selectors.js` is updated. The extension never breaks the page: it logs a `[Contrast Themes]` warning in the console and keeps applying what still works.
 - Artifacts, images and code syntax colors keep their own colors.
 
 ## Uninstall
 
-Remove it from `chrome://extensions`. Chrome deletes all of its stored data; ClaudeTheme writes nothing to claude.ai's own storage, so nothing is left behind.
+Remove it from `chrome://extensions`. Chrome deletes all of its stored data; Contrast Themes writes nothing to claude.ai's own storage, so nothing is left behind.
+
+## Privacy
+
+Contrast Themes collects nothing and makes no network requests. It only stores your chosen theme on your computer. See [PRIVACY.md](PRIVACY.md).
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Changes are listed in [CHANGELOG.md](CHANGELOG.md).
