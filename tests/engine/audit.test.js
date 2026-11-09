@@ -31,8 +31,8 @@ test('audit reports failing pairs and the text level', () => {
   assert.equal(auditTokens(dark).level, auditTokens(dark).textRatio >= AAA_TEXT ? 'AAA' : 'AA');
 });
 
-test('there are exactly the five preset themes', () => {
-  assert.deepEqual(presetFiles.sort(), ['black-orange.json', 'cream-green.json', 'cream-navy.json', 'cream-terracotta.json', 'navy-orange.json']);
+test('there are exactly the six preset themes', () => {
+  assert.deepEqual(presetFiles.sort(), ['black-green.json', 'black-orange.json', 'cream-green.json', 'cream-navy.json', 'cream-terracotta.json', 'navy-orange.json']);
 });
 
 for (const file of presetFiles) {

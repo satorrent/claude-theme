@@ -2,7 +2,7 @@
 
 [English](README.md) · **Español**
 
-Cinco temas de color llamativos para la web de [claude.ai](https://claude.ai), con bordes visibles y texto legible. Cada tema se comprueba con las reglas de contraste de WCAG al construir la extensión, así que ninguno sacrifica la lectura por el aspecto.
+Seis temas de color llamativos para la web de [claude.ai](https://claude.ai), con bordes visibles y texto legible. Cada tema se comprueba con las reglas de contraste de WCAG al construir la extensión, así que ninguno sacrifica la lectura por el aspecto.
 
 > **Proyecto no oficial.** ClaudeTheme no está hecho, respaldado ni mantenido por Anthropic. «Claude» es una marca de Anthropic y aquí solo se usa para indicar en qué web funciona la extensión.
 
@@ -16,6 +16,7 @@ Cinco temas de color llamativos para la web de [claude.ai](https://claude.ai), c
 | Crema y terracota | `#fbf6ea` | `#ce6d4e` | 14,16:1 (AAA) |
 | Crema y azul marino | `#fbf6ea` | `#14284f` | 14,56:1 (AAA) |
 | Azul marino y naranja | `#0b1f3a` | `#ff8a1f` | 10,63:1 (AAA) |
+| Negro y verde | `#0a0a0a` | `#39ff14` | 15,52:1 (AAA) |
 | Negro y naranja | `#0a0a0a` | `#ff7a00` | 15,52:1 (AAA) |
 
 El contraste del texto es el del texto normal sobre el fondo de la página ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA es 4,5:1 y AAA es 7:1). Los bordes y controles llegan al menos a 3:1. Por eso el verde es un verde intenso y no uno flúor: un verde flúor de verdad sobre crema solo da un 1,3:1 y los bordes casi desaparecerían.
