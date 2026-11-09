@@ -12,6 +12,7 @@ import { watch } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { completeTheme } from '../src/engine/theme.js';
+import { relativeLuminance } from '../src/engine/contrast.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
@@ -75,6 +76,7 @@ async function buildThemes() {
           light: { text: Number(audit.light.textRatio.toFixed(2)), level: audit.light.level },
           dark: { text: Number(audit.dark.textRatio.toFixed(2)), level: audit.dark.level },
         },
+        sortKey: [relativeLuminance(theme.tokens.light.bg), relativeLuminance(theme.tokens.light.borderStrong)],
       });
       if (corrections.length) {
         console.log(`  ${file}: ${corrections.length} contrast correction(s) applied automatically`);
@@ -84,6 +86,9 @@ async function buildThemes() {
     }
   }
   if (problems.length) throw new Error(`Invalid theme files:\n  ${problems.join('\n  ')}`);
+  // The popup lists themes from lightest to darkest: by background, then by border.
+  index.sort((a, b) => b.sortKey[0] - a.sortKey[0] || b.sortKey[1] - a.sortKey[1] || a.id.localeCompare(b.id));
+  for (const entry of index) delete entry.sortKey;
   await writeFile(join(outDir, 'index.json'), JSON.stringify(index, null, 2));
   return index.length;
 }
