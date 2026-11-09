@@ -1,0 +1,23 @@
+# Build output (load this folder in chrome://extensions, never commit it)
+dist/
+*.zip
+
+# Dependencies
+node_modules/
+
+# Logs and caches
+npm-debug.log*
+.npm/
+.cache/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# Local environment
+.env
+.env.*
