@@ -1,21 +1,39 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "short_name": "ClaudeTheme",
+  "short_name": "Contrast Themes",
   "description": "__MSG_extDescription__",
   "version": "0.1.0",
   "default_locale": "en",
   "minimum_chrome_version": "120",
-  "permissions": ["storage"],
-  "host_permissions": ["https://claude.ai/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://claude.ai/*"
+  ],
   "action": {
     "default_title": "__MSG_extName__",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    },
     "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://claude.ai/*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://claude.ai/*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_start",
       "all_frames": false
     }
