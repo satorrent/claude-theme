@@ -226,15 +226,18 @@ async function connectToTab() {
   }
   const port = chrome.tabs.connect(tab.id, { name: PREVIEW_PORT });
   port.onDisconnect.addListener(() => {
-    // Fires immediately when the tab has no content script yet
-    // (tab opened before the extension was installed or reloaded).
+    // Fires immediately when the tab has no working content script: tabs
+    // opened before the extension was installed or reloaded keep a stale
+    // one until they are reloaded. Also fires if the tab navigates away.
     void chrome.runtime.lastError;
     if (state.port === port) state.port = null;
     setStatus(t('statusReloadTab'), true);
+    showReloadButton(tab.id);
   });
   port.onMessage.addListener((msg) => {
     if (msg?.type !== 'pong') return;
     state.port = port;
+    $('#reload-tab').hidden = true;
     // Default the popup preview to the mode the page is using.
     const pageDark =
       msg.mode === 'dark' || (msg.mode !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
@@ -243,6 +246,24 @@ async function connectToTab() {
     if (state.dirty) sendPreview();
   });
   port.postMessage({ type: 'ping' });
+}
+
+/** Offers to reload the claude.ai tab, then reconnects the live preview. */
+function showReloadButton(tabId) {
+  const btn = $('#reload-tab');
+  btn.hidden = false;
+  btn.onclick = () => {
+    btn.disabled = true;
+    const onUpdated = (id, info) => {
+      if (id !== tabId || info.status !== 'complete') return;
+      chrome.tabs.onUpdated.removeListener(onUpdated);
+      btn.disabled = false;
+      setStatus('');
+      connectToTab().catch((err) => setStatus(String(err.message || err), true));
+    };
+    chrome.tabs.onUpdated.addListener(onUpdated);
+    chrome.tabs.reload(tabId);
+  };
 }
 
 // ---------- Status + actions ----------
