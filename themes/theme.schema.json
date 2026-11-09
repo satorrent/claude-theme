@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ClaudeTheme theme",
-  "description": "A color theme for the ClaudeTheme extension. Only the input colors are required: light and dark tokens are generated from them (with WCAG AA contrast checks) when missing.",
+  "title": "Contrast Themes theme",
+  "description": "A color theme for the Contrast Themes extension. Only the input colors are required: light and dark tokens are generated from them (with WCAG AA contrast checks) when missing.",
   "type": "object",
   "required": [
     "schemaVersion",

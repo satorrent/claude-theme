@@ -10,7 +10,7 @@ export const KEYS = Object.freeze({
 });
 
 /** Port name used for live preview between popup and content script. */
-export const PREVIEW_PORT = 'claude-theme-preview';
+export const PREVIEW_PORT = 'contrast-themes-preview';
 
 export async function getActive() {
   const data = await chrome.storage.local.get([KEYS.activeTheme, KEYS.activeCss]);

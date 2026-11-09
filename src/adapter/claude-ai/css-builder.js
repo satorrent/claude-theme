@@ -88,7 +88,7 @@ export function buildCss(tokens, meta = {}) {
   if (!tokens || !tokens.light || !tokens.dark) throw new TypeError('buildCss needs light and dark tokens');
   const name = String(meta.name || 'custom').replace(/\*\//g, '');
   return [
-    `/* ClaudeTheme: ${name} */`,
+    `/* Contrast Themes: ${name} */`,
     blocksForMode('light', tokens.light),
     blocksForMode('dark', tokens.dark),
     `${MODE_ROOT}, ${MODE_ROOT} .cds-root {\n${STATIC_VARIABLES.map((v) => `  ${v.name}: ${v.value} !important;`).join('\n')}\n}`,

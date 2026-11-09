@@ -6,8 +6,8 @@
 import { KEYS, PREVIEW_PORT } from '../../shared/storage.js';
 import { HEALTH_CHECKS } from './selectors.js';
 
-const STYLE_ID = 'claude-theme-style';
-const LOG = '[ClaudeTheme]';
+const STYLE_ID = 'contrast-themes-style';
+const LOG = '[Contrast Themes]';
 
 let storedCss = '';
 let previewing = false;
