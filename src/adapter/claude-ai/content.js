@@ -116,6 +116,7 @@ function healthCheck() {
 }
 
 function onReady() {
+  console.debug(LOG, 'content script ready');
   ensurePlacement();
   // claude.ai renders client-side; give it time before checking elements.
   setTimeout(healthCheck, 4000);

@@ -3,19 +3,20 @@
 // only receives finished CSS.
 
 import { formatRatio, hexToOklch, isHex, normalizeHex, oklchToHex } from '../engine/index.js';
-import { createTheme, generateTokens } from '../engine/index.js';
+import { DEFAULT_TINT, createTheme, generateTokens } from '../engine/index.js';
 import { buildCss } from '../adapter/claude-ai/css-builder.js';
 import { PREVIEW_PORT, clearActive, getActive, setActive } from '../shared/storage.js';
 
 const t = (key, subs) => chrome.i18n.getMessage(key, subs) || key;
 const $ = (sel, root = document) => root.querySelector(sel);
 
-// Neutral warm base with Claude-like terracotta accent as a starting point.
-const DEFAULT_INPUTS = { base: '#8a8478', accent: '#c2410c' };
+// Warm terracotta starting point, colored enough to be visible at once.
+const DEFAULT_INPUTS = { base: '#a0603c', accent: '#c2410c', tint: DEFAULT_TINT };
 const CLAUDE_URL = /^https:\/\/claude\.ai\//;
 
 const state = {
   colors: {}, // name -> {L, C, h}
+  tint: DEFAULT_TINT, // 0..1, how colored the backgrounds are
   tokens: null,
   corrections: [],
   previewMode: 'light',
@@ -55,6 +56,8 @@ function buildEditor(name) {
     box.appendChild(row);
   }
 
+  if (name === 'base') buildTintSlider(box);
+
   const hex = $('.hex', editor);
   hex.addEventListener('input', () => {
     const value = hex.value.trim();
@@ -66,6 +69,31 @@ function buildEditor(name) {
     onColorsChanged();
   });
   hex.addEventListener('blur', () => renderEditor(name, { skipHex: false }));
+}
+
+/** Tint intensity slider, shown under the base color. */
+function buildTintSlider(box) {
+  const row = document.createElement('label');
+  row.className = 'slider-row tint-row';
+  row.innerHTML = '<span></span><input type="range" id="tint" min="0" max="1" step="0.05"><output for="tint"></output>';
+  $('span', row).textContent = t('tintLabel');
+  const input = $('input', row);
+  input.setAttribute('aria-label', t('tintLabel'));
+  input.addEventListener('input', () => {
+    state.tint = Number(input.value);
+    renderTint();
+    onColorsChanged();
+  });
+  box.appendChild(row);
+}
+
+function renderTint() {
+  const input = $('#tint');
+  input.value = String(state.tint);
+  const base = state.colors.base;
+  const capped = { ...base, L: 0.6, C: Math.min(base.C, 0.12) };
+  input.style.setProperty('--track', `linear-gradient(to right, ${oklchToHex({ ...capped, C: 0 })}, ${oklchToHex(capped)})`);
+  $('output[for="tint"]').textContent = `${Math.round(state.tint * 100)}%`;
 }
 
 const hexOf = (name) => oklchToHex(state.colors[name]);
@@ -95,11 +123,12 @@ function renderEditor(name, { skipHex }) {
     input.style.setProperty('--track', trackGradient(lch, s.key, s.min, s.max));
     $(`output[for="${name}-${s.key}"]`).textContent = s.fmt(lch[s.key]);
   }
+  if (name === 'base') renderTint();
 }
 
 // ---------- Theme generation + preview ----------
 function currentInputs() {
-  return { base: hexOf('base'), accent: hexOf('accent') };
+  return { base: hexOf('base'), accent: hexOf('accent'), tint: state.tint };
 }
 
 function regenerate() {
@@ -252,6 +281,7 @@ async function init() {
   const inputs = theme?.inputs || DEFAULT_INPUTS;
   state.colors.base = hexToOklch(inputs.base);
   state.colors.accent = hexToOklch(inputs.accent);
+  state.tint = inputs.tint ?? DEFAULT_TINT;
   state.previewMode = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   renderEditor('base', { skipHex: false });
   renderEditor('accent', { skipHex: false });

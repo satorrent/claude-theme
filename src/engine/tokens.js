@@ -37,8 +37,10 @@ export const MODES = Object.freeze(['light', 'dark']);
 const RECIPE = {
   light: {
     surfaces: { surfaceLow: 0.955, bg: 0.975, surface: 0.99, surfaceRaised: 0.995, popover: 1 },
-    tint: 0.35, // share of the base chroma used for surfaces
-    maxTint: 0.03,
+    maxTint: 0.07, // surface chroma at full tint intensity
+    // Near-white has almost no room for chroma in sRGB, so stronger tints
+    // also lower surface lightness a little ("tinted paper").
+    tintLightnessShift: -0.04,
     text: { text: 0.24, textSecondary: 0.44, textMuted: 0.51 },
     border: 0.895,
     borderStrong: 0.64,
@@ -48,8 +50,8 @@ const RECIPE = {
   },
   dark: {
     surfaces: { surfaceLow: 0.17, bg: 0.205, surface: 0.235, surfaceRaised: 0.26, popover: 0.3 },
-    tint: 0.3,
-    maxTint: 0.025,
+    maxTint: 0.06,
+    tintLightnessShift: 0,
     text: { text: 0.95, textSecondary: 0.79, textMuted: 0.68 },
     border: 0.32,
     borderStrong: 0.55,
@@ -61,11 +63,15 @@ const RECIPE = {
 
 const STATE_HUES = { danger: 27, success: 150, warning: 75 };
 
+/** Default tint intensity (0 = neutral grays, 1 = strongest tint). */
+export const DEFAULT_TINT = 0.6;
+
 /**
  * Generates both token sets from the input colors.
  *
- * @param {{base: string, accent: string}} inputs - Hex colors. `base` sets the
- *   hue and tint of backgrounds and text; `accent` drives interactive elements.
+ * @param {{base: string, accent: string, tint?: number}} inputs - Hex colors.
+ *   `base` sets the hue and tint of backgrounds and text; `accent` drives
+ *   interactive elements; `tint` (0..1) scales how colored the backgrounds are.
  * @returns {{light: Object<string,string>, dark: Object<string,string>, corrections: Array<Correction>}}
  *
  * @typedef {Object} Correction
@@ -82,18 +88,21 @@ const STATE_HUES = { danger: 27, success: 150, warning: 75 };
 export function generateTokens(inputs) {
   const base = hexToOklch(normalizeHex(inputs.base));
   const accent = normalizeHex(inputs.accent);
+  const tint = Math.min(1, Math.max(0, inputs.tint ?? DEFAULT_TINT));
   const corrections = [];
   const result = { corrections };
   for (const mode of MODES) {
-    result[mode] = generateMode(mode, base, accent, corrections);
+    result[mode] = generateMode(mode, base, accent, tint, corrections);
   }
   return result;
 }
 
-function generateMode(mode, base, accentHex, corrections) {
+function generateMode(mode, base, accentHex, tint, corrections) {
   const r = RECIPE[mode];
   const t = {};
-  const tintC = Math.min(base.C * r.tint, r.maxTint);
+  // Surface chroma follows the base color's own chroma, capped per mode and
+  // scaled by the tint intensity. A gray base gives neutral surfaces.
+  const tintC = tint * Math.min(base.C, r.maxTint);
   const neutral = (L, cScale = 1) => oklchToHex({ L, C: tintC * cScale, h: base.h });
 
   // Track every adjustment so the UI can show what was fixed.
@@ -119,7 +128,8 @@ function generateMode(mode, base, accentHex, corrections) {
 
   // Backgrounds and surfaces.
   for (const [name, L] of Object.entries(r.surfaces)) {
-    t[name] = neutral(L, name === 'popover' ? 0.6 : 1);
+    const shifted = name === 'popover' ? L : L + r.tintLightnessShift * tint;
+    t[name] = neutral(shifted, name === 'popover' ? 0.6 : 1);
   }
   const surfaces = ['bg', 'surfaceLow', 'surface', 'surfaceRaised', 'popover'];
 

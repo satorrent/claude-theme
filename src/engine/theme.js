@@ -20,7 +20,7 @@ export function slugify(name) {
 /**
  * Builds a complete, valid theme (inputs + generated tokens).
  * @param {{id?: string, name: string, source: 'preset'|'manual'|'image',
- *          inputs: {base: string, accent: string, palette?: string[]},
+ *          inputs: {base: string, accent: string, tint?: number, palette?: string[]},
  *          author?: string, description?: string}} spec
  * @returns {{theme: object, corrections: Array}}
  */
@@ -29,6 +29,7 @@ export function createTheme(spec) {
     base: normalizeHex(spec.inputs.base),
     accent: normalizeHex(spec.inputs.accent),
   };
+  if (spec.inputs.tint != null) inputs.tint = Math.round(Math.min(1, Math.max(0, spec.inputs.tint)) * 100) / 100;
   if (spec.inputs.palette) inputs.palette = spec.inputs.palette.map(normalizeHex);
 
   const { light, dark, corrections } = generateTokens(inputs);

@@ -9,6 +9,7 @@
   "lightnessLabel": { "message": "Luminosidad" },
   "chromaLabel": { "message": "Croma" },
   "hueLabel": { "message": "Tono" },
+  "tintLabel": { "message": "Intensidad" },
   "previewTitle": { "message": "Vista previa" },
   "modeLight": { "message": "Claro" },
   "modeDark": { "message": "Oscuro" },

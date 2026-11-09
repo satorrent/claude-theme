@@ -111,6 +111,7 @@ main { padding: 0 16px; display: grid; gap: 12px; }
   color: var(--ui-text-2);
 }
 .slider-row output { text-align: right; font-variant-numeric: tabular-nums; }
+.tint-row { padding-top: 6px; border-top: 1px dashed var(--ui-line); }
 
 input[type="range"] {
   -webkit-appearance: none;

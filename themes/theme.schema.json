@@ -3,7 +3,13 @@
   "title": "ClaudeTheme theme",
   "description": "A color theme for the ClaudeTheme extension. Only the input colors are required: light and dark tokens are generated from them (with WCAG AA contrast checks) when missing.",
   "type": "object",
-  "required": ["schemaVersion", "id", "name", "source", "inputs"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "source",
+    "inputs"
+  ],
   "additionalProperties": false,
   "properties": {
     "$schema": {
@@ -38,12 +44,19 @@
       "description": "Optional one-line description."
     },
     "source": {
-      "enum": ["preset", "manual", "image"],
+      "enum": [
+        "preset",
+        "manual",
+        "image"
+      ],
       "description": "How the theme was created."
     },
     "inputs": {
       "type": "object",
-      "required": ["base", "accent"],
+      "required": [
+        "base",
+        "accent"
+      ],
       "additionalProperties": false,
       "description": "Colors the tokens are generated from.",
       "properties": {
@@ -55,9 +68,17 @@
           "$ref": "#/$defs/hex",
           "description": "Drives buttons, links and focus rings."
         },
+        "tint": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How strongly backgrounds take the base color: 0 = neutral grays, 1 = strongest. Defaults to 0.6."
+        },
         "palette": {
           "type": "array",
-          "items": { "$ref": "#/$defs/hex" },
+          "items": {
+            "$ref": "#/$defs/hex"
+          },
           "minItems": 1,
           "maxItems": 8,
           "description": "Colors extracted from a reference image (only for source 'image')."
@@ -66,12 +87,19 @@
     },
     "tokens": {
       "type": "object",
-      "required": ["light", "dark"],
+      "required": [
+        "light",
+        "dark"
+      ],
       "additionalProperties": false,
       "description": "Generated tokens. Optional in /themes files: the build and the extension generate them from inputs.",
       "properties": {
-        "light": { "$ref": "#/$defs/tokenSet" },
-        "dark": { "$ref": "#/$defs/tokenSet" }
+        "light": {
+          "$ref": "#/$defs/tokenSet"
+        },
+        "dark": {
+          "$ref": "#/$defs/tokenSet"
+        }
       }
     }
   },
@@ -105,24 +133,60 @@
         "warning"
       ],
       "properties": {
-        "bg": { "$ref": "#/$defs/hex" },
-        "surfaceLow": { "$ref": "#/$defs/hex" },
-        "surface": { "$ref": "#/$defs/hex" },
-        "surfaceRaised": { "$ref": "#/$defs/hex" },
-        "popover": { "$ref": "#/$defs/hex" },
-        "text": { "$ref": "#/$defs/hex" },
-        "textSecondary": { "$ref": "#/$defs/hex" },
-        "textMuted": { "$ref": "#/$defs/hex" },
-        "accent": { "$ref": "#/$defs/hex" },
-        "accentHover": { "$ref": "#/$defs/hex" },
-        "onAccent": { "$ref": "#/$defs/hex" },
-        "accentText": { "$ref": "#/$defs/hex" },
-        "accentSoft": { "$ref": "#/$defs/hex" },
-        "border": { "$ref": "#/$defs/hex" },
-        "borderStrong": { "$ref": "#/$defs/hex" },
-        "danger": { "$ref": "#/$defs/hex" },
-        "success": { "$ref": "#/$defs/hex" },
-        "warning": { "$ref": "#/$defs/hex" }
+        "bg": {
+          "$ref": "#/$defs/hex"
+        },
+        "surfaceLow": {
+          "$ref": "#/$defs/hex"
+        },
+        "surface": {
+          "$ref": "#/$defs/hex"
+        },
+        "surfaceRaised": {
+          "$ref": "#/$defs/hex"
+        },
+        "popover": {
+          "$ref": "#/$defs/hex"
+        },
+        "text": {
+          "$ref": "#/$defs/hex"
+        },
+        "textSecondary": {
+          "$ref": "#/$defs/hex"
+        },
+        "textMuted": {
+          "$ref": "#/$defs/hex"
+        },
+        "accent": {
+          "$ref": "#/$defs/hex"
+        },
+        "accentHover": {
+          "$ref": "#/$defs/hex"
+        },
+        "onAccent": {
+          "$ref": "#/$defs/hex"
+        },
+        "accentText": {
+          "$ref": "#/$defs/hex"
+        },
+        "accentSoft": {
+          "$ref": "#/$defs/hex"
+        },
+        "border": {
+          "$ref": "#/$defs/hex"
+        },
+        "borderStrong": {
+          "$ref": "#/$defs/hex"
+        },
+        "danger": {
+          "$ref": "#/$defs/hex"
+        },
+        "success": {
+          "$ref": "#/$defs/hex"
+        },
+        "warning": {
+          "$ref": "#/$defs/hex"
+        }
       }
     }
   }

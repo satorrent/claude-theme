@@ -18,6 +18,9 @@ const INPUTS = [
   { base: '#000000', accent: '#000000' },
   { base: '#ffffff', accent: '#ffffff' },
   { base: '#7c3aed', accent: '#22c55e' },
+  { base: '#7c3aed', accent: '#22c55e', tint: 1 },
+  { base: '#00ff88', accent: '#ffe600', tint: 1 },
+  { base: '#c2410c', accent: '#1d4ed8', tint: 0 },
 ];
 
 test('token list matches the JSON schema', () => {
@@ -33,7 +36,7 @@ test('generates every token as hex in both modes', () => {
 });
 
 for (const inputs of INPUTS) {
-  test(`AA contrast holds for ${inputs.base} / ${inputs.accent}`, () => {
+  test(`AA contrast holds for ${inputs.base} / ${inputs.accent} / tint ${inputs.tint ?? 'default'}`, () => {
     const out = generateTokens(inputs);
     for (const mode of MODES) {
       const t = out[mode];
@@ -90,6 +93,18 @@ test('corrections describe what was adjusted', () => {
   assert.ok(fix.ratioAfter >= AA_TEXT);
   assert.equal(fix.min, AA_TEXT);
   assert.equal(fix.resolved, true);
+});
+
+test('tint intensity controls how colored the backgrounds are', () => {
+  const C = (tint, mode) => hexToOklch(generateTokens({ base: '#c2410c', accent: '#1d4ed8', tint })[mode].bg).C;
+  for (const mode of MODES) {
+    assert.ok(C(0, mode) < 0.002, `${mode}: tint 0 is neutral`);
+    assert.ok(C(0.3, mode) < C(0.6, mode) && C(0.6, mode) <= C(1, mode), `${mode}: grows with tint`);
+    assert.ok(C(1, mode) > C(0.3, mode) * 1.5, `${mode}: full tint is clearly stronger`);
+  }
+  // Default intensity is clearly visible on a saturated base (not a near-gray).
+  assert.ok(C(undefined, 'dark') > 0.03);
+  assert.ok(C(undefined, 'light') > 0.02); // near-white leaves less room for chroma
 });
 
 test('generation is deterministic', () => {

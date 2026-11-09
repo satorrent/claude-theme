@@ -9,6 +9,7 @@
   "lightnessLabel": { "message": "Lightness" },
   "chromaLabel": { "message": "Chroma" },
   "hueLabel": { "message": "Hue" },
+  "tintLabel": { "message": "Tint" },
   "previewTitle": { "message": "Preview" },
   "modeLight": { "message": "Light" },
   "modeDark": { "message": "Dark" },
