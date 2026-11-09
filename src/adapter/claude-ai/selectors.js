@@ -15,7 +15,13 @@ export const MODE_ATTRIBUTE = 'data-mode';
  * Elements where claude.ai (re)declares its tokens. Overrides must target
  * all of them, otherwise a nested declaration would win again.
  */
-export const TOKEN_HOSTS = ['', ' .cds-root'];
+export const TOKEN_HOSTS = ['', ' .cds-root', ' #static-composer-box'];
+
+/**
+ * Prefix for the theme's own custom properties (--ct-bg, --ct-border, ...),
+ * declared on the same hosts so ELEMENT_RULES can reference any token.
+ */
+export const THEME_PROPERTY_PREFIX = '--ct-';
 
 /**
  * claude.ai CSS variable -> theme token.
@@ -49,6 +55,15 @@ export const ROOT_VARIABLES = [
   { name: '--cds-role-accent-450', token: 'accent' },
   { name: '--cds-bg-accent', token: 'accentSoft' },
   { name: '--cds-border', token: 'border' },
+
+  // Lines and rings. claude.ai draws most edges with these, not with borders:
+  // header and list dividers, sidebar seam, composer and field rings.
+  { name: '--cds-border-line', token: 'borderStrong' },
+  { name: '--cds-border-strong', token: 'borderStrong' },
+  { name: '--cds-ring-color', token: 'borderStrong' },
+  { name: '--cds-fizzy-lake-color-composer-ring', token: 'borderStrong' },
+  { name: '--cds-fizzy-lake-color-seam', token: 'borderStrong' },
+  { name: '--cds-fizzy-lake-color-banner-line', token: 'borderStrong' },
 
   // Unprefixed aliases still used by some components.
   { name: '--page-bg', token: 'bg' },
@@ -108,6 +123,35 @@ export const ROOT_VARIABLES = [
   { name: '--danger-200', token: 'danger', format: 'hsl' },
 ];
 
+/** Non-color variables set while a theme is active (thicker rings and lines). */
+export const STATIC_VARIABLES = [
+  { name: '--cds-ring-inner', value: '1.5px' },
+  { name: '--cds-toolbar-line', value: '1px' },
+];
+
+/**
+ * Element rules for edges claude.ai does not drive with a variable.
+ * Declarations may use var(--ct-<token>). Kept short on purpose: every
+ * selector here is a place that can break when claude.ai changes.
+ */
+export const ELEMENT_RULES = [
+  {
+    area: 'user message bubble',
+    selector: 'div.group\\/bubble:has([data-testid="user-message"])',
+    css: 'box-shadow: inset 0 0 0 1.5px var(--ct-borderStrong) !important;',
+  },
+  {
+    area: 'menus',
+    selector: '[role="menu"]',
+    css: 'box-shadow: 0 0 0 1.5px var(--ct-borderStrong), 0 8px 24px rgb(0 0 0 / 0.35) !important;',
+  },
+  {
+    area: 'code blocks',
+    selector: '[data-testid="assistant-message"] pre',
+    css: 'border: 1px solid var(--ct-borderStrong) !important;',
+  },
+];
+
 /**
  * Areas with their own variables that do not inherit from the root tokens.
  * `selector` is matched as a descendant of the mode root.
@@ -138,5 +182,7 @@ export const HEALTH_CHECKS = {
     { name: 'chat input', selector: '[data-testid="chat-input"]', paths: /^\/(new|chat|project)/ },
     { name: 'user message', selector: '[data-testid="user-message"]', paths: /^\/chat\// },
     { name: 'assistant message', selector: '[data-testid="assistant-message"]', paths: /^\/chat\// },
+    { name: 'composer box', selector: '#static-composer-box, .rounded-composer', paths: /^\/(new|chat|project)/ },
+    { name: 'user message bubble', selector: 'div.group\\/bubble:has([data-testid="user-message"])', paths: /^\/chat\// },
   ],
 };

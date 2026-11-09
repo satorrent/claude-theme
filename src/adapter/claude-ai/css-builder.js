@@ -4,11 +4,15 @@
 // theme follows the user's mode choice without any script.
 
 import { hexToHsl } from '../../engine/color.js';
+import { relativeLuminance } from '../../engine/contrast.js';
 import {
+  ELEMENT_RULES,
   MODE_ATTRIBUTE,
   MODE_ROOT,
   ROOT_VARIABLES,
   SCOPED_VARIABLES,
+  STATIC_VARIABLES,
+  THEME_PROPERTY_PREFIX,
   TOKEN_HOSTS,
 } from './selectors.js';
 
@@ -44,9 +48,22 @@ function rule(roots, suffixes, body) {
   return `${selector} {\n${body}\n}`;
 }
 
+/** The theme's own tokens as --ct-* properties, for ELEMENT_RULES. */
+function themeProperties(tokens) {
+  return Object.entries(tokens)
+    .map(([name, value]) => `  ${THEME_PROPERTY_PREFIX}${name}: ${value};`)
+    .join('\n');
+}
+
 function blocksForMode(mode, tokens) {
   const { explicit, system } = modeRoots(mode);
-  const rootBody = declarations(ROOT_VARIABLES, tokens);
+  // Native controls and scrollbars follow the theme's darkness, not the mode name.
+  const scheme = relativeLuminance(tokens.bg) < 0.2 ? 'dark' : 'light';
+  const rootBody = [
+    declarations(ROOT_VARIABLES, tokens),
+    themeProperties(tokens),
+    `  color-scheme: ${scheme} !important;`,
+  ].join('\n');
   const scoped = SCOPED_VARIABLES.map((s) => ({ suffix: ` ${s.selector}`, body: declarations(s.variables, tokens) }));
 
   const forRoots = (roots) => [
@@ -74,8 +91,8 @@ export function buildCss(tokens, meta = {}) {
     `/* ClaudeTheme: ${name} */`,
     blocksForMode('light', tokens.light),
     blocksForMode('dark', tokens.dark),
-    `${MODE_ROOT}[${MODE_ATTRIBUTE}="light"] { color-scheme: light; }`,
-    `${MODE_ROOT}[${MODE_ATTRIBUTE}="dark"] { color-scheme: dark; }`,
+    `${MODE_ROOT}, ${MODE_ROOT} .cds-root {\n${STATIC_VARIABLES.map((v) => `  ${v.name}: ${v.value} !important;`).join('\n')}\n}`,
+    ...ELEMENT_RULES.map((r) => `/* ${r.area} */\n${r.selector} { ${r.css} }`),
     '',
   ].join('\n');
 }
