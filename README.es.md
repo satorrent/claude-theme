@@ -2,7 +2,7 @@
 
 [English](README.md) · **Español**
 
-Cuatro temas de color llamativos para la web de [claude.ai](https://claude.ai), con bordes visibles y texto legible. Cada tema se comprueba con las reglas de contraste de WCAG al construir la extensión, así que ninguno sacrifica la lectura por el aspecto.
+Cinco temas de color llamativos para la web de [claude.ai](https://claude.ai), con bordes visibles y texto legible. Cada tema se comprueba con las reglas de contraste de WCAG al construir la extensión, así que ninguno sacrifica la lectura por el aspecto.
 
 > **Proyecto no oficial.** ClaudeTheme no está hecho, respaldado ni mantenido por Anthropic. «Claude» es una marca de Anthropic y aquí solo se usa para indicar en qué web funciona la extensión.
 
@@ -13,11 +13,12 @@ Cuatro temas de color llamativos para la web de [claude.ai](https://claude.ai), 
 | Tema | Fondo | Bordes | Contraste del texto |
 | --- | --- | --- | --- |
 | Azul marino y naranja | `#0b1f3a` | `#ff8a1f` | 10,63:1 (AAA) |
-| Rojo y negro | `#c92324` | `#000000` | 5,15:1 (AA) |
 | Negro y naranja | `#0a0a0a` | `#ff7a00` | 15,52:1 (AAA) |
 | Crema y azul marino | `#fbf6ea` | `#14284f` | 14,56:1 (AAA) |
+| Crema y verde | `#fbf6ea` | `#1b9e00` | 13,83:1 (AAA) |
+| Crema y rosa | `#fbf6ea` | `#ff1493` | 15,03:1 (AAA) |
 
-El contraste del texto es el del texto normal sobre el fondo de la página ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA es 4,5:1 y AAA es 7:1). Los bordes y controles llegan al menos a 3:1. Rojo y negro solo llega a AA: un rojo lo bastante vivo para seguir pareciendo rojo no puede dar 7:1 con texto blanco y a la vez mantener visibles los bordes negros.
+El contraste del texto es el del texto normal sobre el fondo de la página ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA es 4,5:1 y AAA es 7:1). Los bordes y controles llegan al menos a 3:1. Por eso el verde es un verde intenso y no uno flúor: un verde flúor de verdad sobre crema solo da un 1,3:1 y los bordes casi desaparecerían.
 
 Cada tema se ve igual con Claude en modo claro o en modo oscuro: el color es el tema.
 

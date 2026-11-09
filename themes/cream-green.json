@@ -1,0 +1,54 @@
+{
+  "$schema": "./theme.schema.json",
+  "schemaVersion": 1,
+  "id": "cream-green",
+  "name": "Cream & Green",
+  "description": "Warm cream backgrounds with vivid green borders.",
+  "source": "preset",
+  "inputs": {
+    "base": "#fbf6ea",
+    "accent": "#1b9e00"
+  },
+  "tokens": {
+    "light": {
+      "bg": "#fbf6ea",
+      "surfaceLow": "#f3ecdb",
+      "surface": "#fffdf7",
+      "surfaceRaised": "#ffffff",
+      "popover": "#ffffff",
+      "text": "#10241a",
+      "textSecondary": "#2d4a38",
+      "textMuted": "#4a6555",
+      "accent": "#1b9e00",
+      "accentHover": "#2fb512",
+      "onAccent": "#000000",
+      "accentText": "#137d00",
+      "accentSoft": "#e2f3dc",
+      "border": "#1b9e00",
+      "borderStrong": "#1b9e00",
+      "danger": "#a8201a",
+      "success": "#137d00",
+      "warning": "#7a4b00"
+    },
+    "dark": {
+      "bg": "#fbf6ea",
+      "surfaceLow": "#f3ecdb",
+      "surface": "#fffdf7",
+      "surfaceRaised": "#ffffff",
+      "popover": "#ffffff",
+      "text": "#10241a",
+      "textSecondary": "#2d4a38",
+      "textMuted": "#4a6555",
+      "accent": "#1b9e00",
+      "accentHover": "#2fb512",
+      "onAccent": "#000000",
+      "accentText": "#137d00",
+      "accentSoft": "#e2f3dc",
+      "border": "#1b9e00",
+      "borderStrong": "#1b9e00",
+      "danger": "#a8201a",
+      "success": "#137d00",
+      "warning": "#7a4b00"
+    }
+  }
+}

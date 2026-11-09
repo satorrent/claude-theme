@@ -2,7 +2,7 @@
 
 **English** · [Español](README.es.md)
 
-Four bold color themes for the [claude.ai](https://claude.ai) website, with visible borders and readable text. Every theme is checked against WCAG contrast rules at build time, so none of them trades legibility for looks.
+Five bold color themes for the [claude.ai](https://claude.ai) website, with visible borders and readable text. Every theme is checked against WCAG contrast rules at build time, so none of them trades legibility for looks.
 
 > **Unofficial project.** ClaudeTheme is not made, endorsed or supported by Anthropic. "Claude" is a trademark of Anthropic; it is used here only to describe the website this extension works on.
 
@@ -13,11 +13,12 @@ Four bold color themes for the [claude.ai](https://claude.ai) website, with visi
 | Theme | Background | Borders | Text contrast |
 | --- | --- | --- | --- |
 | Navy & orange | `#0b1f3a` | `#ff8a1f` | 10.63:1 (AAA) |
-| Red & black | `#c92324` | `#000000` | 5.15:1 (AA) |
 | Black & orange | `#0a0a0a` | `#ff7a00` | 15.52:1 (AAA) |
 | Cream & navy | `#fbf6ea` | `#14284f` | 14.56:1 (AAA) |
+| Cream & green | `#fbf6ea` | `#1b9e00` | 13.83:1 (AAA) |
+| Cream & pink | `#fbf6ea` | `#ff1493` | 15.03:1 (AAA) |
 
-Text contrast is body text on the page background ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA is 4.5:1, AAA is 7:1). Borders and controls reach at least 3:1. Red & black only reaches AA: a red bright enough to still look red cannot also give 7:1 with white text while keeping black borders visible.
+Text contrast is body text on the page background ([WCAG](https://www.w3.org/TR/WCAG22/#contrast-minimum): AA is 4.5:1, AAA is 7:1). Borders and controls reach at least 3:1. That is why the green is a vivid green rather than a neon one: a true neon green on cream contrasts only about 1.3:1 and the borders would almost disappear.
 
 Each theme looks the same whether Claude is in light or dark mode: the color is the theme.
 

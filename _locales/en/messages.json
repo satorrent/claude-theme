@@ -17,14 +17,17 @@
   "theme_navy_orange": {
     "message": "Navy & orange"
   },
-  "theme_red_black": {
-    "message": "Red & black"
-  },
   "theme_black_orange": {
     "message": "Black & orange"
   },
   "theme_cream_navy": {
     "message": "Cream & navy"
+  },
+  "theme_cream_green": {
+    "message": "Cream & green"
+  },
+  "theme_cream_pink": {
+    "message": "Cream & pink"
   },
   "originalName": {
     "message": "Claude's original"
